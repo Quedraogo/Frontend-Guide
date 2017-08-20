@@ -2,37 +2,60 @@
 title: Frontend Guide
 ---
 ## Naming Conventions
-Naming Conventions (Namenskonventionen) in CSS sorgen für Konsistent, besseres Verständnis, stabileren Code, 
-bessere Lesbarkeit, mehr Transparenz und erleichtern die gemeinsame Arbeit am Projekt.
+CSS Namenskonventionen (naming conventions) sorgen für Konsistent, besseres Verständnis, stabileren Code, bessere Lesbarkeit, mehr Transparenz und erleichtern die gemeinsame Arbeit am Projekt.
 
 **Gute Namenskonvention geben Auskunft darüber:**
-* Was eine Klasse tut,
-* Wo eine Klasse verwendet werden kann,
-* Wozu (sonst) eine Klasse gehört.
+* was eine Klasse tut,
+* wo eine Klasse verwendet werden kann,
+* wozu (sonst) eine Klasse gehört.
 
 
-**wir unterscheiden zwischen folgenden Typen von Klassennamen**
+**Wir können zwischen folgenden Typen von Klassennamen unterscheiden**
 
 * beschreibende Klassennamen (.btn-red)
 * Kontextbezogene Klassennamen (.btn-submit)
 * funktionelle Klassennamen (.btn-primary)
 
 Wann immer möglich, sollte auf funktionelle Klassen gesetzt werden.
-Gerade für größere/wachsende Projekte sind sie die bessere Wahl und sollten gegenüber 
-kontextbezogenen und beschreibenden Klassen bevorzugt werden.
+Gerade für größere/wachsende Projekte sind sie die bessere Wahl, da sie sich unabhängig von ihrem Kontext wiederverwenden lassen, das Schema ist nachvollziehbar und gut zu erweitern.
 
+```css
+// korrekte darstellung wird an Kontext gebunden, 
+// dadurch schlechte Wiederverwendbarkeit und wenig intuitiv,
+// schlechte selektorperformance
+.form li button {
+  background-color: blue;
+}
+
+// Risiko zu veralten, schlechte Wartbarkeit
+.btn-blue {
+  background-color: blue;
+}
+
+// beschreibt Funktion (vermutlich absenden eines Formulars)
+// Klasse lässt sich nur mit Einschränkungen auch auf andere Buttons anwenden
+.btn-submit {
+  background-color: blue;
+}
+
+// Nicely abstracted, very portable, doesn’t risk becoming out of date.
+.btn-primary {
+  background-color: blue;
+}
+```
+Quellen:
+https://cssguidelin.es/#naming
 https://erdmann-freunde.de/css-kurs/teil1-css-klassen-benennen/
 
+---
+# Following the naming methodologie BEM (not strictly).
 
-**Currently following the naming methodologie BEM (not strictly).**
+![Alternativer Text](https://en.bem.info/ChhNUMI54FMJQEmmBRKqJJUPIJg.svgd "These problems are solved by BEM methodology, a development approach allowing to achieve flexible and maintainable code.")
 
 * using numbers and lowercase Latin characters.
 * Individual words within names are separated by a hyphen (-).
 
----
-
 **Example BEM-tree**
-
 
 ```html
 
@@ -53,6 +76,7 @@ https://erdmann-freunde.de/css-kurs/teil1-css-klassen-benennen/
 
 - **Block name**
   A block name defines a namespace for elements and modifiers.The namespace defined by the name of a block identifies an element as belonging to the block. An element name is delimited by a double underscore (__).
+
 - **Element name**
   Íf a block has several identical elements, such as in the case of menu items, all of them will have the same name menu__item. Important! Using elements within elements is not recommended by the BEM methodology.
 
